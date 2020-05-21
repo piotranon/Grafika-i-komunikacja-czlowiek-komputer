@@ -35,14 +35,14 @@ public class App {
         mainRenderer.clear();
 
 //        mainRenderer.drawLine(100,100,200,200, line);
-        mainRenderer.drawLine(200,200,400,400, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,400,200, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,400,0, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,200,0, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,0,0, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,0,200, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,0,400, Renderer.LineAlgo.BRESENHAM);
-        mainRenderer.drawLine(200,200,200,0, Renderer.LineAlgo.BRESENHAM);
+        mainRenderer.drawLine(200,200,400,400, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,400,200, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,400,0, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,200,0, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,0,0, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,0,200, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,0,400, Renderer.LineAlgo.BRESENHAM_INT);
+        mainRenderer.drawLine(200,200,200,0, Renderer.LineAlgo.BRESENHAM_INT);
 
         try {
             mainRenderer.save();
