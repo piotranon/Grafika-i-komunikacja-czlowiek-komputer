@@ -9,7 +9,7 @@ public class App {
     String version = "0.02";
 
     public static void main(String[] args) {
-        if(args.length<3)
+        if(args.length<4)
         {
             System.out.println("====================================================");
             System.out.println("nie podano wszystkich argumentow");
@@ -27,10 +27,14 @@ public class App {
         //object height
         int h=Integer.parseInt(args[2]);
 
+        Renderer.LineAlgo line=null;
+        if(args[3].equalsIgnoreCase("LINE_NAIVE"))
+            line= Renderer.LineAlgo.NAIVE;
+
         Renderer mainRenderer = new Renderer(dir,w,h);
         mainRenderer.clear();
 
-        mainRenderer.drawLine(0,0,200,200, Renderer.LineAlgo.NAIVE);
+        mainRenderer.drawLine(100,100,200,200, line);
 
         try {
             mainRenderer.save();
