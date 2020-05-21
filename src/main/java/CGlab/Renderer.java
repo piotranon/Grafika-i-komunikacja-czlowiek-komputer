@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class Renderer {
 
-    public enum LineAlgo { NAIVE, DDA, BRESENHAM, BRESENHAM_INT; }
+    public enum LineAlgo {NAIVE, DDA, BRESENHAM, BRESENHAM_INT;}
 
     private BufferedImage render;
     public int h = 200;
@@ -18,7 +18,7 @@ public class Renderer {
     private String filename;
     private LineAlgo lineAlgo = LineAlgo.NAIVE;
 
-    public Renderer(String filename,int width,int height) {
+    public Renderer(String filename, int width, int height) {
         w = width;
         h = height;
         render = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -31,14 +31,30 @@ public class Renderer {
     }
 
     public void drawLine(int x0, int y0, int x1, int y1, LineAlgo lineAlgo) {
-        if(lineAlgo == LineAlgo.NAIVE) drawLineNaive(x0, y0, x1, y1);
-        if(lineAlgo == LineAlgo.DDA) drawLineDDA(x0, y0, x1, y1);
-        if(lineAlgo == LineAlgo.BRESENHAM) drawLineBresenham(x0, y0, x1, y1);
-        if(lineAlgo == LineAlgo.BRESENHAM_INT) drawLineBresenhamInt(x0, y0, x1, y1);
+        if (lineAlgo == LineAlgo.NAIVE) drawLineNaive(x0, y0, x1, y1);
+        if (lineAlgo == LineAlgo.DDA) drawLineDDA(x0, y0, x1, y1);
+        if (lineAlgo == LineAlgo.BRESENHAM) drawLineBresenham(x0, y0, x1, y1);
+        if (lineAlgo == LineAlgo.BRESENHAM_INT) drawLineBresenhamInt(x0, y0, x1, y1);
     }
 
     public void drawLineNaive(int x0, int y0, int x1, int y1) {
         // TODO: zaimplementuj
+        int roznicaX = Math.max(x0, x1) - Math.min(x0, x1);
+        int roznicaY = Math.max(y0, y1) - Math.min(y0, y1);
+
+        double licznik = y0 + y1;
+        double mianownik = x0 + x1;
+        double m = licznik / mianownik;
+
+        if (x0 > x1) {
+            int temp = x0;
+            x0 = x1;
+            x1 = temp;
+        }
+
+        for (int i = 0; i < roznicaX; i++) {
+            drawPoint(x0 + i, (int) Math.round(m * (x0 + i)));
+        }
     }
 
     public void drawLineDDA(int x0, int y0, int x1, int y1) {

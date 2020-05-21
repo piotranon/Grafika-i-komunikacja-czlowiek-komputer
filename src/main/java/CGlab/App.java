@@ -20,7 +20,7 @@ public class App {
             return;
         }
 
-        //renered object dir
+        //rendered object dir
         String dir=args[0];
         //object width
         int w=Integer.parseInt(args[1]);
@@ -29,7 +29,9 @@ public class App {
 
         Renderer mainRenderer = new Renderer(dir,w,h);
         mainRenderer.clear();
-        mainRenderer.drawPoint(100, 100);
+
+        mainRenderer.drawLine(0,0,200,200, Renderer.LineAlgo.NAIVE);
+
         try {
             mainRenderer.save();
         } catch (IOException ex) {

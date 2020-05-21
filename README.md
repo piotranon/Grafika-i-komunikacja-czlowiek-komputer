@@ -5,7 +5,7 @@
 
 - [x] Laboratorium 01 - zrealizowane na zajęciach
     - [x] Zad 1
-    - [ ] Zad 2
+    - [x] Zad 2
     - [ ] Zad 3
     - [ ] Zad 4
     - [ ] Zad 5
