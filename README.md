@@ -7,7 +7,7 @@
     - [x] Zad 1
     - [x] Zad 2
     - [x] Zad 3
-    - [ ] Zad 4
+    - [x] Zad 4
     - [ ] Zad 5
 - [ ] [Laboratorium 02](LAB02.md): Algorytmy rasteryzacji linii
 - [ ] [Laboratorium 03](LAB03.md): Wypełnianie trójkątów
