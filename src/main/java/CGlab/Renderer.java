@@ -164,8 +164,14 @@ public class Renderer {
         Color pointColor = new Color(color.x,color.y,color.z);
         int triangleColor=pointColor.getRGB();
 
-        for (int x = 0; x < this.render.getWidth(); x++)
-            for (int y = 0; y < this.render.getHeight(); y++) {
+        int maxX = Math.max((int)A.x,(int)Math.max((int)B.x,(int)C.x));
+        int maxY = Math.max((int)A.y,(int)Math.max((int)B.y,(int)C.y));
+
+        int minX = Math.min((int)A.x,(int)Math.min((int)B.x,(int)C.x));
+        int minY = Math.min((int)A.y,(int)Math.min((int)B.y,(int)C.y));
+
+        for (int x = minX; x < maxX; x++)
+            for (int y = minY; y < maxY; y++) {
                 Vec2f P = new Vec2f(x, y);
                 Vec3f bary = barycentric(A, B, C, P);
 
