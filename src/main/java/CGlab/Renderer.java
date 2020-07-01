@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import static java.lang.Integer.compare;
 import static java.lang.Integer.signum;
 
 public class Renderer {
@@ -67,14 +68,14 @@ public class Renderer {
         // TODO: zaimplementuj
         int white = 255 | (255 << 8) | (255 << 16) | (255 << 24);
 
-        int dx = x1-x0;
-        int dy = y1-y0;
-        float derr = Math.abs(dy/(float)(dx));
+        int dx = x1 - x0;
+        int dy = y1 - y0;
+        float derr = Math.abs(dy / (float) (dx));
         float err = 0;
 
         int y = y0;
 
-        for (int x=x0; x<x1; x++) {
+        for (int x = x0; x < x1; x++) {
             render.setRGB(x, y, white);
             err += derr;
             if (err > 0.5) {
@@ -88,19 +89,19 @@ public class Renderer {
         // TODO: zaimplementuj
         int white = 255 | (255 << 8) | (255 << 16) | (255 << 24);
 
-        int dx = x1-x0;
-        int dy = y1-y0;
-        int D = 2*dy-dx;
+        int dx = x1 - x0;
+        int dy = y1 - y0;
+        int D = 2 * dy - dx;
 
         int y = y0;
 
-        for (int x=x0; x<x1; x++) {
+        for (int x = x0; x < x1; x++) {
             render.setRGB(x, y, white);
             if (D > 0) {
                 y++;
-                D=D-2*dx;
+                D = D - 2 * dx;
             }
-            D=D+2*dy;
+            D = D + 2 * dy;
         } // Oktanty: 8
     }
 
@@ -130,12 +131,32 @@ public class Renderer {
     }
 
     public Vec3f barycentric(Vec2f A, Vec2f B, Vec2f C, Vec2f P) {
-        Vec3f barycentric = null;
+
+        Vec3f v1 = new Vec3f((B.x - A.x), (C.x - A.x), (A.x - P.x));
+        // tutaj potrzebujemy wektora składającego się ze współrzędnych
+        // x wektorów AB, AC ora PA.
+
+        Vec3f v2 = new Vec3f((B.y - A.y), (C.y - A.y), (A.y - P.y));
+        // tutaj potrzebujemy wektora składającego się ze współrzędnych
+        // y wektorów AB, AC ora PA.
+
+        Vec3f cross = vectorMultiply(v1, v2);
+        // iloczyn wektorowy v1 i v2. Wskazówka: zaimplementuj do tego oddzielną metodę
+//        System.out.println(v1.toString()+"\n"+v2.toString()+"\n"+cross.toString());
+        Vec2f uv = new Vec2f((cross.x / cross.z), (cross.y / cross.z));
+        // wektor postaci: cross.x / cross.z, cross.y / cross.z
+//        System.out.println("x: "+uv.x+" y: "+uv.y);
+        Vec3f barycentric = new Vec3f(uv.x, uv.y, (1 - uv.x - uv.y));
+        // współrzędne barycentryczne, uv.x, uv.y, 1- uv.x - uv.y
+
         return barycentric;
     }
 
-    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C){
+    public Vec3f vectorMultiply(Vec3f v1, Vec3f v2) {
+        return new Vec3f((v1.y * v2.z - v1.z * v2.y), (v1.z * v2.x - v2.z * v1.x), (v1.x * v2.y - v1.y * v2.x));
+    }
 
+    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C) {
     }
 
     //Wektory do obliczeń barycentrycznych
