@@ -10,5 +10,5 @@
     - [x] Zad 3
     - [x] Zad 4
     - [x] Zad 5
-- [ ] [Laboratorium 03](LAB03.md): Wypełnianie trójkątów
+- [x] [Laboratorium 03](LAB03.md): Wypełnianie trójkątów
 
