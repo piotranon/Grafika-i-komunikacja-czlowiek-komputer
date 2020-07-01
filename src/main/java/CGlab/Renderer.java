@@ -128,4 +128,78 @@ public class Renderer {
         g.dispose();
         return flippedImage;
     }
+
+    public Vec3f barycentric(Vec2f A, Vec2f B, Vec2f C, Vec2f P) {
+        Vec3f barycentric = null;
+        return barycentric;
+    }
+
+    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C){
+
+    }
+
+    //Wektory do obliczeń barycentrycznych
+    public class Vec3i {
+        public int x;
+        public int y;
+        public int z;
+
+        public Vec3i(int x, int y, int z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y + " " + z;
+        }
+    }
+
+    public class Vec3f {
+        public float x;
+        public float y;
+        public float z;
+
+        public Vec3f(float x, float y, float z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y + " " + z;
+        }
+    }
+
+    public class Vec2f {
+        public float x;
+        public float y;
+
+        public Vec2f(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+    }
+
+    public class Vec2i {
+        public int x;
+        public int y;
+
+        public Vec2i(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+    }
 }
