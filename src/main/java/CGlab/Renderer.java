@@ -1,7 +1,7 @@
 package CGlab;
 
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -156,20 +156,21 @@ public class Renderer {
         return new Vec3f((v1.y * v2.z - v1.z * v2.y), (v1.z * v2.x - v2.z * v1.x), (v1.x * v2.y - v1.y * v2.x));
     }
 
-    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C) {
+    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C, Vec3i color) {
         // dla każdego punktu obrazu this.render:
         //      oblicz współrzędne baryc.
         //      jeśli punkt leży wewnątrz, zamaluj (patrz wykład)
+
+        Color pointColor = new Color(color.x,color.y,color.z);
+        int triangleColor=pointColor.getRGB();
 
         for (int x = 0; x < this.render.getWidth(); x++)
             for (int y = 0; y < this.render.getHeight(); y++) {
                 Vec2f P = new Vec2f(x, y);
                 Vec3f bary = barycentric(A, B, C, P);
 
-                int red = 255 | (255 << 8) | (0 << 16) | (0 << 24);
-
                 if ((bary.x >= 0) && (bary.y >= 0) && (bary.z >= 0))
-                    render.setRGB(x, y, red);
+                    render.setRGB(x, y, triangleColor);
             }
     }
 
@@ -180,9 +181,9 @@ public class Renderer {
         public int z;
 
         public Vec3i(int x, int y, int z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this.x = (x >= 255) ? 255 : (x <= 0) ? 0 : x;
+            this.y = (y >= 255) ? 255 : (y <= 0) ? 0 : y;
+            this.z = (z >= 255) ? 255 : (z <= 0) ? 0 : z;
         }
 
         @Override
