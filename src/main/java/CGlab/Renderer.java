@@ -157,6 +157,20 @@ public class Renderer {
     }
 
     public void drawTriangle(Vec2f A, Vec2f B, Vec2f C) {
+        // dla każdego punktu obrazu this.render:
+        //      oblicz współrzędne baryc.
+        //      jeśli punkt leży wewnątrz, zamaluj (patrz wykład)
+
+        for (int x = 0; x < this.render.getWidth(); x++)
+            for (int y = 0; y < this.render.getHeight(); y++) {
+                Vec2f P = new Vec2f(x, y);
+                Vec3f bary = barycentric(A, B, C, P);
+
+                int red = 255 | (255 << 8) | (0 << 16) | (0 << 24);
+
+                if ((bary.x >= 0) && (bary.y >= 0) && (bary.z >= 0))
+                    render.setRGB(x, y, red);
+            }
     }
 
     //Wektory do obliczeń barycentrycznych
